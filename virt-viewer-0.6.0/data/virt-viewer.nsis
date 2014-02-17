@@ -7,10 +7,10 @@
 # which will generate the output file 'virt-viewer-0.6.0.exe' which is a Windows
 # installer containing your program.
 
-Name "VirtViewer 0.6.0"
-OutFile "virt-viewer-0.6.0.exe"
-InstallDir "$LOCALAPPDATA\virt-viewer"
-InstallDirRegKey HKCU "Software\virt-viewer" ""
+Name "EzView 0.6.0"
+OutFile "EzView-0.6.0-x64.exe"
+InstallDir "$LOCALAPPDATA\EzView"
+InstallDirRegKey HKCU "Software\EzView" ""
 
 RequestExecutionLevel user
 SetCompressor bzip2
@@ -21,18 +21,18 @@ XPStyle on
 Page directory
 Page instfiles
 
-!define REG_UNINSTALL "Software\Microsoft\Windows\CurrentVersion\Uninstall\virt-viewer"
+!define REG_UNINSTALL "Software\Microsoft\Windows\CurrentVersion\Uninstall\EzView"
 !define REG_IEPOLICY  "Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\{96190E9D-6FBB-64DB-9095-29F6FDE0B897}"
 
 Function RegisterApplication
     ;Register uninstaller into Add/Remove panel (for local user only)
-    WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayName" "VirtViewer 0.6.0"
+    WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayName" "EzView 0.6.0"
     WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayIcon" "$\"$INSTDIR\bin\virt-viewer.exe$\""
-    WriteRegStr HKCU "${REG_UNINSTALL}" "Publisher" "virt-manager.org"
+    WriteRegStr HKCU "${REG_UNINSTALL}" "Publisher" "Percomp labs"
     WriteRegStr HKCU "${REG_UNINSTALL}" "DisplayVersion" "0.6.0"
     WriteRegDWord HKCU "${REG_UNINSTALL}" "EstimatedSize" 32000 ;KB
-    WriteRegStr HKCU "${REG_UNINSTALL}" "HelpLink" "http://www.virt-manager.org"
-    WriteRegStr HKCU "${REG_UNINSTALL}" "URLInfoAbout" "http://www.virt-manager.org"
+    WriteRegStr HKCU "${REG_UNINSTALL}" "HelpLink" "http://easycloud.nchc.org.tw/index.php/%E7%99%BB%E5%85%A5%E8%99%9B%E6%93%AC%E6%A9%9F%E5%99%A8"
+    WriteRegStr HKCU "${REG_UNINSTALL}" "URLInfoAbout" "http://ezila.info"
     WriteRegStr HKCU "${REG_UNINSTALL}" "InstallLocation" "$\"$INSTDIR$\""
     WriteRegStr HKCU "${REG_UNINSTALL}" "InstallSource" "$\"$EXEDIR$\""
     WriteRegDWord HKCU "${REG_UNINSTALL}" "NoModify" 1
@@ -65,7 +65,17 @@ Section "VirtViewer"
   File "deps.txt"
 
   SetOutPath "$INSTDIR\bin"
+
   File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/gst-discoverer-0.10.exe"
+#Ezilla modify 
+  File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libdbus-glib-1-2.dll"
+  File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libdbus-1-3.dll"
+  File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libgcc_s_seh-1.dll"
+  File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libgmp-10.dll"
+  File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libhogweed-2-5.dll"
+  File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libnettle-4-7.dll"
+  File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libopus-0.dll"
+#Ezilla modify 
   File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/gst-feedback.exe"
   File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/gst-inspect-0.10.exe"
   File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/gst-inspect.exe"
@@ -77,15 +87,6 @@ Section "VirtViewer"
   File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/gst-xmlinspect.exe"
   File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/gst-xmllaunch-0.10.exe"
   File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/gst-xmllaunch.exe"
-  #Ezilla modify
-  File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libdbus-1-3.dll"
-  File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libdbus-glib-1-2.dll"
-  File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libgcc_s_seh-1.dll"
-  File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libgmp-10.dll"
-  File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libhogweed-2-5.dll"
-  File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libnettle-4-7.dll"
-  File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libopus-0.dll"
-  #Ezilla modify
   File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libatk-1.0-0.dll"
   File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libcairo-2.dll"
   File "/usr/x86_64-w64-mingw32/sys-root/mingw/bin/libcelt051-0.dll"
@@ -224,15 +225,15 @@ Section "VirtViewer"
 SectionEnd
 
 Section "Start Menu Shortcuts"
-  CreateDirectory "$SMPROGRAMS\VirtViewer"
-  CreateShortCut "$SMPROGRAMS\VirtViewer\Remote Viewer.lnk" "$INSTDIR\bin\remote-viewer.exe" "" "$INSTDIR\bin\remote-viewer.exe" 0
-  CreateShortCut "$SMPROGRAMS\VirtViewer\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
+  CreateDirectory "$SMPROGRAMS\EzView"
+  CreateShortCut "$SMPROGRAMS\EzView\EzView.lnk" "$INSTDIR\bin\remote-viewer.exe" "" "$INSTDIR\bin\remote-viewer.exe" 0
+  CreateShortCut "$SMPROGRAMS\EzView\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
 SectionEnd
 
 Section "Uninstall"
-  Delete /rebootok "$SMPROGRAMS\VirtViewer\Uninstall.lnk"
-  Delete /rebootok "$SMPROGRAMS\VirtViewer\Remote Viewer.lnk"
-  RMDir "$SMPROGRAMS\VirtViewer"
+  Delete /rebootok "$SMPROGRAMS\EzView\Uninstall.lnk"
+  Delete /rebootok "$SMPROGRAMS\EzView\EzView.lnk"
+  RMDir "$SMPROGRAMS\EzView"
 
   DeleteRegKey HKCU "Software\spice-space.org\spicex\client"
   DeleteRegKey /ifempty HKCU "Software\spice-space.org\spicex"
