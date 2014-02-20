@@ -36,7 +36,7 @@ libdir = /usr/x86_64-w64-mingw32/sys-root/mingw/lib
 DATADIRNAME = share
 itlocaledir = $(prefix)/$(DATADIRNAME)/locale
 subdir = po
-install_sh = ${SHELL} /root/EzView/virt-viewer-0.6.0/build-aux/install-sh
+install_sh = ${SHELL} /root/EzView/virt-viewer-0.6.0-x64/build-aux/install-sh
 # Automake >= 1.8 provides $(MKDIR_P).
 # Until it can be supposed, use the safe fallback:
 mkdir_p = $(install_sh) -d

@@ -12,12 +12,14 @@
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="skip_pager_hint">True</property>
-    <property name="program_name">Virtual Machine Viewer</property>
-    <property name="copyright" translatable="yes">Copyright (C) 2007-2012 Daniel P. Berrange
-Copyright (C) 2007-2012 Red Hat, Inc.</property>
-    <property name="comments" translatable="yes">A remote desktop client built with GTK-VNC, SPICE-GTK and libvirt</property>
-    <property name="website">http://virt-manager.org/</property>
-    <property name="website_label" translatable="yes">virt-manager.org</property>
+    <property name="program_name">EzView</property>
+    <property name="copyright" translatable="yes">Copyright (C) 2012-2014 Jonathan Chen
+    Copyright (C) 2012-2014  Percomp Labs
+    Copyright (C) 2007-2014  Daniel P. Berrange
+Copyright (C) 2007-2014 Red Hat, Inc.</property>
+    <property name="comments" translatable="yes">based on Virtual Machine Viewer. A remote desktop client built with GTK-VNC, SPICE-GTK and libvirt</property>
+    <property name="website">http://ezilla.info</property>
+    <property name="website_label" translatable="yes">ezilla.info</property>
     <property name="license" translatable="yes">This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; either version 2 of the License, or
@@ -32,7 +34,9 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 </property>
-    <property name="authors">Daniel P. Berrange
+    <property name="authors">
+Jonathan Chen 
+Daniel P. Berrange
 Marc-André Lureau
 </property>
     <property name="translator_credits" translatable="yes">The Fedora Translation Team</property>

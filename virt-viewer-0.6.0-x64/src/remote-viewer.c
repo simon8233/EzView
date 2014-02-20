@@ -892,7 +892,7 @@ connect_dialog(gchar **uri)
                                          NULL);
     gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_ACCEPT);
     area = gtk_dialog_get_content_area(GTK_DIALOG(dialog));
-    table = GTK_TABLE(gtk_table_new(1, 2, 0));
+    table = GTK_TABLE(gtk_table_new(2, 5, 0));
     gtk_box_pack_start(GTK_BOX(area), GTK_WIDGET(table), TRUE, TRUE, 0);
     gtk_table_set_row_spacings(table, 5);
     gtk_table_set_col_spacings(table, 5);
@@ -901,14 +901,27 @@ connect_dialog(gchar **uri)
     gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
     gtk_table_attach_defaults(table, label, 0, 1, 0, 1);
     entry = GTK_WIDGET(gtk_entry_new());
-    gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
+    //Ezilla modify add spice:// prefix on user entry.
+    gchar *prefix = "spice://";
+    gtk_entry_set_text(GTK_ENTRY (entry) ,prefix);
+    gtk_entry_set_activates_default( entry, TRUE);
     g_object_set(entry, "width-request", 200, NULL);
-    gtk_table_attach_defaults(table, entry, 1, 2, 0, 1);
+    gtk_table_attach_defaults(table, entry, 1, 2, 0, 1);    
 
+    //Ezilla modify , add example label. suggest user follow example #begin.
+    label = gtk_label_new(_("Example:"));
+    gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+    gtk_table_attach_defaults(table, label, 0, 1, 1, 3);
+    label = gtk_label_new(_("spice://ezilla.nchc.org.tw:49921"));
+    gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+    gtk_table_attach_defaults(table, label, 1, 2, 1, 3);
+    label = gtk_label_new(_("       "));
+    gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+    gtk_table_attach_defaults(table, label, 0, 1, 0, 5);
+    //Ezilla modify , add example label. suggest user follow example #end.
     label = gtk_label_new(_("Recent connections:"));
     gtk_box_pack_start(GTK_BOX(area), label, TRUE, TRUE, 0);
     gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
-
     recent = GTK_WIDGET(gtk_recent_chooser_widget_new());
     gtk_recent_chooser_set_show_icons(GTK_RECENT_CHOOSER(recent), FALSE);
     gtk_recent_chooser_set_sort_type(GTK_RECENT_CHOOSER(recent), GTK_RECENT_SORT_MRU);
